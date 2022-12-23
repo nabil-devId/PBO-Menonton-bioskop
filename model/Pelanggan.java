@@ -15,7 +15,6 @@ public class Pelanggan {
     private String kataSandi;
     private List<Tiket> tiketList = new ArrayList<>();
     private List<Jadwal> jadwalList = new ArrayList<>();
-    private List<Studio> studioList = new ArrayList<>();
 
     public void setJadwalList(List<Jadwal> jadwalList) {
         this.jadwalList = jadwalList;
@@ -23,14 +22,6 @@ public class Pelanggan {
 
     public List<Jadwal> getJadwalList() {
         return jadwalList;
-    }
-
-    public void setStudioList(List<Studio> studioList) {
-        this.studioList = studioList;
-    }
-
-    public List<Studio> getStudioList() {
-        return studioList;
     }
 
     public Pelanggan() {
@@ -63,6 +54,7 @@ public class Pelanggan {
                 String kategori = tiket.getJadwal().getFilm().getKategori().stream().map(Kategori::getNamaKategori).collect(Collectors.joining(", "));
                 System.out.println(Arrays.toString(position) + ". " + tiket.getJadwal().getFilm().getJudul() + " ("+kategori+") \r\nJam tayang: " + mulai + " - " + berakhir + "[" + tanggalTayang + "]" +
                         "\r\nStudio: " + tiket.getJadwal().getStudio().getNamaStudio() + ", Kursi: " + tiket.getJadwal().getStudio().getBookedKursi().stream().map(booked -> "["+booked.getNoKursi()+"]").collect(Collectors.joining(",")) );
+                System.out.println("===========================================================");
                 position[0]++;
             });
         } else if (command.equals("2")) {
@@ -71,7 +63,7 @@ public class Pelanggan {
                 System.out.println("Daftar jadwal :");
                 lihatJadwal();
                 System.out.println("Untuk kembali, ketik : exit");
-                System.out.printf("Pilih jadwal :");
+                System.out.print("Pilih jadwal :");
                 jadwal = sc.next();
                 try {
                     if (Integer.parseInt(jadwal) <= jadwalList.size()) {
@@ -85,10 +77,13 @@ public class Pelanggan {
                                 position[0]++;
                             });
                             System.out.println(Arrays.toString(position) + ". Kembali");
+                            System.out.print("Kursi: ");
                             kursi = sc.next();
                             if (Integer.parseInt(kursi) <= jadwalSelected.getStudio().getAvailableKursi().size()) {
                                 if (Boolean.TRUE.equals(jadwalSelected.getStudio().bookedKursi(kursi))) {
-                                    tiketList.add(new Tiket(Integer.toString(tiketList.size() + 1), 20000L, jadwalSelected));
+                                    if (tiketList.stream().noneMatch(tiket -> tiket.getJadwal().getFilm().getIdFilm().equals(jadwalSelected.getFilm().getIdFilm()))) {
+                                        tiketList.add(new Tiket(Integer.toString(tiketList.size() + 1), 20000L, jadwalSelected));
+                                    }
                                     System.out.println("Berhasil membeli tiket.");
                                 }
                                 break;

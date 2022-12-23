@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Pelanggan pelanggan = new Pelanggan();
+        Pelanggan pelanggan;
         Autentikasi autentikasi = new Autentikasi();
         final List<Kursi> kursiList = List.of(
                 new Kursi("1", 1),
@@ -69,7 +69,6 @@ public class Main {
                 if (Boolean.TRUE.equals(hasil)) {
                     pelanggan = autentikasi.getPelanggan();
                     pelanggan.setJadwalList(jadwalList);
-                    pelanggan.setStudioList(studioList);
                     do {
                         command = pelanggan.lihatMenu(sc);
                     } while (!command.toLowerCase(Locale.ROOT).equals("exit"));
