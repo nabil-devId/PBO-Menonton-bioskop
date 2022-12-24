@@ -46,6 +46,7 @@ public class Main {
                         LocalDateTime.now().plusWeeks(2),
                         FilmEnum.AVATAR2.getFilm(),
                         studioList.get(0)
+                        //tes
                 )
         );
         String command = "";
