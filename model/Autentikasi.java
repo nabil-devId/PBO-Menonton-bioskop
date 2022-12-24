@@ -15,7 +15,7 @@ public class Autentikasi {
     }
 
     public Autentikasi() {
-        pelangganRegistered.add(new Pelanggan("x123", "081111111", "tes1233@gmail.com", "tes", "tes123"));
+        pelangganRegistered.add(new Pelanggan("x123", "081111111", "tes123@gmail.com", "tes", "tes123"));
     }
 
     public Boolean autentikasiPelanggan(String email, String kataSandi) {

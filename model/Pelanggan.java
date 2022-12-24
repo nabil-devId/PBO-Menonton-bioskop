@@ -44,6 +44,10 @@ public class Pelanggan {
         command = sc.next();
         if (command.equals("1")) {
             Integer[] position = {1};
+            if (getTiketList().isEmpty()) {
+                System.out.println("Anda belum membeli tiket.");
+                System.out.println("============================");
+            }
             getTiketList().forEach(tiket -> {
                 DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
                 DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
