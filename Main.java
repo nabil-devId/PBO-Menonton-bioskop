@@ -45,7 +45,7 @@ public class Main {
                         LocalDateTime.now().plusWeeks(2).plusHours(5),
                         LocalDateTime.now().plusWeeks(2),
                         FilmEnum.AVATAR2.getFilm(),
-                        studioList.get(2)
+                        studioList.get(0)
                 )
         );
         String command = "";
